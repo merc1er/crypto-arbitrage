@@ -9,24 +9,31 @@ import requests
 import json
 ################################################################################
 
+##################
+#### currency ####
+##################
+
+req = requests.get("https://api.fixer.io/latest")
+rate = req.json()
+
+krw = rate['rates']['KRW']
+
 #################
 #### COINONE ####
 #################
 
 req = requests.get("https://api.coinone.co.kr/ticker/")
-# print(req.status_code)
-btc = json.loads(req.text)
+btc_coinone = json.loads(req.text)
 
-print("Coinone:")
-print(btc['last'])
+sell = float(btc_coinone['last']) / krw
 
 ###############
 #### G-DAX ####
 ###############
 
 req = requests.get("https://api.gdax.com/products/BTC-EUR/ticker")
-# print(req.status_code)
-btc = json.loads(req.text)
+btc_gdax = json.loads(req.text)
 
-print("G-DAX:")
-print(btc['ask'])
+buy = float(btc_gdax['ask'])
+
+print(sell/buy)
