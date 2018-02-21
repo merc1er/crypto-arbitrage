@@ -50,6 +50,6 @@ buy = float(btc_gdax['ask'])
 
 premium = (sell/buy - 1) * 100 # quick mafs
 
-info = "<small>buy: " + str(buy) + " - sell: " + str(sell) + "</small>"
+info = "<small>buy: " + str(buy) + " - sell: " + str('%.2f'%sell) + "</small>"
 print("<p class='text-center'>" + currency.upper() + ": " + str('%.2f'%premium) + "% "
 	+ info + "</p>")
