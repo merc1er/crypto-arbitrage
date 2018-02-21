@@ -15,6 +15,12 @@
     <div class="container">
       <div class="row">
         <h1>premium</h1>
+        <p>
+          <!--  -->
+          <?php
+            require 'prices';
+          ?>
+        </p>
       </div>
     </div>
 
