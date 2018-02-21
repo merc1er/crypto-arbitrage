@@ -44,5 +44,12 @@ btc_gdax = req.json()
 
 buy = float(btc_gdax['ask'])
 
-premium = (sell/buy - 1) * 100
-print("<p>" + currency.upper() + ": " + str('%.2f'%premium) + "% </p>")
+#################
+#### display ####
+#################
+
+premium = (sell/buy - 1) * 100 # quick mafs
+
+info = "<small>buy: " + str(buy) + " - sell: " + str(sell) + "</small>"
+print("<p class='text-center'>" + currency.upper() + ": " + str('%.2f'%premium) + "% "
+	+ info + "</p>")
