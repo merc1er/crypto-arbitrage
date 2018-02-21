@@ -14,13 +14,12 @@
 
     <div class="container">
       <div class="row">
-        <h1>premium</h1>
-        <p>
+        <h2>
           <!--  -->
           <?php
             require 'prices';
           ?>
-        </p>
+        </h2>
       </div>
     </div>
 

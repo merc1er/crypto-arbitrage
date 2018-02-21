@@ -1,7 +1,7 @@
 """
 """
 __author__ = "merc1er"
-__version__ = "0.2"
+__version__ = "0.3"
 __email__ = "corentin@mercier.link"
 
 ################################################################################
@@ -45,4 +45,4 @@ btc_gdax = req.json()
 buy = float(btc_gdax['ask'])
 
 premium = (sell/buy - 1) * 100
-print(currency.upper() + ": " + str('%.2f'%premium) + "%")
+print(currency.upper() + ": " + str('%.2f'%premium) + "%\n")
