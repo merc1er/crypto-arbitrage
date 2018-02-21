@@ -1,7 +1,7 @@
 """
 """
 __author__ = "merc1er"
-__version__ = "0.3"
+__version__ = "0.3.1"
 __email__ = "corentin@mercier.link"
 
 ################################################################################
@@ -12,7 +12,7 @@ import json
 
 # checking arguments
 currency = sys.argv[1]
-if currency not in "btcethltcbch":
+if currency not in ['btc', 'bch', 'eth', 'ltc']:
 	print("Invalid argument")
 	sys.exit()
 
