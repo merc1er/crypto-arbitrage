@@ -14,12 +14,19 @@
 
     <div class="container">
       <div class="row">
-        <h2>
+        <h2 class="col-md">
           <!--  -->
           <?php
             require 'prices';
           ?>
         </h2>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Gdax commission: 0.25%</p>
+          <p>transa</p>
+        </div>
       </div>
     </div>
 
