@@ -29,11 +29,20 @@ krw = rate['rates']['KRW']
 #### COINONE ####
 #################
 
-req = requests.get(url = "https://api.coinone.co.kr/ticker/",
-											params = {"currency":currency})
-btc_coinone = req.json()
+# req = requests.get(url = "https://api.coinone.co.kr/ticker/",
+# 											params = {"currency":currency})
+# btc_coinone = req.json()
 
-sell = float(btc_coinone['last']) / krw
+# sell = float(btc_coinone['last']) / krw
+
+################
+#### KORBIT ####
+################
+
+req = requests.get("https://api.korbit.co.kr/v1/ticker?currency_pair=" + currency.lower() + "_krw")
+btc_korbit = req.json()
+
+sell = float(btc_korbit['last']) / krw
 
 ###############
 #### G-DAX ####
