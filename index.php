@@ -22,13 +22,13 @@
         </h2>
       </div>
 
-      <div class="row">
+      <!--<div class="row">
         <div class="col-md-6">
           <p>Gdax commission: 0.25%</p>
           <p>transa</p>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
