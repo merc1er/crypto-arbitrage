@@ -40,11 +40,15 @@ except:
 #### COINONE ####
 #################
 
-# req = requests.get(url = "https://api.coinone.co.kr/ticker/",
-# 											params = {"currency":currency})
-# btc_coinone = req.json()
+# try:
+# 	req = requests.get(url = "https://api.coinone.co.kr/ticker/",
+# 												params = {"currency":currency})
+# 	btc_coinone = req.json()
 
-# sell = float(btc_coinone['last']) / krw
+# 	sell = float(btc_coinone['last']) / krw
+# except:
+# 	print("Error: could not fetch Coinone")
+# 	sys.exit()
 
 ################
 #### KORBIT ####
