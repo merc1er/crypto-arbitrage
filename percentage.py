@@ -16,7 +16,7 @@ if len(sys.argv) < 2:
 	sys.exit()
 
 currency = sys.argv[1]
-if currency not in ['btc', 'bch', 'eth', 'ltc']:
+if currency not in ['btc', 'bch', 'eth']:
 	if currency in ['-h', 'help', '--help']:
 		print("Usage:\npython percentage.py [cryptocurrency]")
 		sys.exit()
