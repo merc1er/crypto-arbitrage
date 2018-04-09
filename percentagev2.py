@@ -1,7 +1,7 @@
-"""
-"""
+# -*- coding: utf-8 -*-
+
 __author__ = "merc1er"
-__version__ = "0.3.1"
+__version__ = "0.4"
 __email__ = "corentin@mercier.link"
 
 ################################################################################
@@ -22,6 +22,7 @@ def display():
 		premium = (sell(currency)/buy(currency) - 1) * 100 # quick mafs
 
 		info = "<small>buy: " + str(buy(currency)) + " - sell: " + str('%.2f'%sell(currency)) + "</small>"
+
 		print("<p class='text-center'>" + currency.upper() + ": " + str('%.2f'%premium) + "% "
 			+ info + "</p>")
 
@@ -61,13 +62,16 @@ def buy(currencyIn):
     except Exception as e:
         errorHandler('Could not fetch from gdax')
 
+################################################################################
+# main
+
 # checking arguments
 if len(sys.argv) < 2:
 	print("Usage:\npython percentage.py [cryptocurrency]")
 	sys.exit()
 
-currency = sys.argv[1]
-if currency not in ['btc', 'bch', 'eth']:
+currency = sys.argv[1].lower()
+if currency not in ['btc', 'bch', 'eth', 'ltc']:
 	if currency in ['-h', 'help', '--help']:
 		print("Usage:\npython percentage.py [cryptocurrency]")
 		sys.exit()
