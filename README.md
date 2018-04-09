@@ -24,4 +24,3 @@ python percentage.py [cryptocurrency]
 	- BTC
 	- BCH
 	- ETH
-	- LTC

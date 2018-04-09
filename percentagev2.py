@@ -30,7 +30,7 @@ def display():
 #################
 def krwCalc():
 	try:
-		req = requests.get("https://apid.fixer.io/latest")
+		req = requests.get("https://api.fixer.io/latest")
 		rate = req.json()
 		krw = rate['rates']['KRW']
 		return krw
