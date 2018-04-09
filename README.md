@@ -4,6 +4,6 @@ Simple python and bash script that computes the arbitrage percentage between mar
 
 ### Usage
 
-````shell
+```shell
 python percentage.py [cryptocurrency]
 ```
