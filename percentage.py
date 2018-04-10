@@ -18,13 +18,14 @@ def errorHandler(errors):
     print('Error: ' + errors)
     sys.exit();
 
-def display():
-		premium = (sell(currency)/buy(currency) - 1) * 100 # quick mafs
-
-		info = "<small>buy: " + str(buy(currency)) + " - sell: " + str('%.2f'%sell(currency)) + "</small>"
-
-		print("<p class='text-center'>" + currency.upper() + ": " + str('%.2f'%premium) + "% "
-			+ info + "</p>")
+def display(b):
+    premium = (sell(currency)/buy(currency) - 1) * 100 # quick mafs
+    if b == True:
+        info = "<small>buy: " + str(buy(currency)) + " - sell: " + str('%.2f'%sell(currency)) + "</small>"
+        print("<p class='text-center'>" + currency.upper() + ": " + str('%.2f'%premium) + "% " + info + "</p>")
+    else:
+        info = "buy: " + str(buy(currency)) + " - sell: " + str('%.2f'%sell(currency))
+        print( currency.upper() + ": " + str('%.2f'%premium) + "% " + info)
 
 #################
 #### display ####
@@ -67,7 +68,7 @@ def buy(currencyIn):
 
 # checking arguments
 if len(sys.argv) < 2:
-	print("Usage:\npython percentage.py [cryptocurrency]")
+	print("Usage:\npython percentage.py [cryptocurrency] [options]")
 	sys.exit()
 
 currency = sys.argv[1].lower()
@@ -77,5 +78,7 @@ if currency not in ['btc', 'bch', 'eth', 'ltc']:
 		sys.exit()
 	print("Invalid argument")
 	sys.exit()
+elif len(sys.argv) > 2 and sys.argv[2] in ['--no-html']:
+    display(False);
 else:
-    display()
+    display(True)
