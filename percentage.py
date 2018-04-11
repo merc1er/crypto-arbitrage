@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 __author__ = "merc1er"
@@ -18,7 +19,7 @@ def errorHandler(errors):
     print('Error: ' + errors)
     sys.exit();
 
-def display(b):
+def display(currency, b):
     premium = (sell(currency)/buy(currency) - 1) * 100 # quick mafs
     if b == True:
         info = "<small>buy: " + str(buy(currency)) + " - sell: " \
@@ -29,9 +30,9 @@ def display(b):
         info = "buy: " + str(buy(currency)) + " - sell: " + str('%.2f'%sell(currency))
         print( currency.upper() + ": " + str('%.2f'%premium) + "% " + info)
 
-#################
-#### display ####
-#################
+####################
+#### krw to eur ####
+####################
 def krwCalc():
 	try:
 		req = requests.get("https://api.fixer.io/latest")
@@ -70,19 +71,23 @@ def buy(currencyIn):
 ################################################################################
 # main
 
-# checking arguments
-if len(sys.argv) < 2:
-	print("Usage:\npython percentage.py [cryptocurrency] [options]")
-	sys.exit()
+def main():
+    # checking arguments
+    if len(sys.argv) < 2:
+    	print("Usage:\npython percentage.py [cryptocurrency] [options]")
+    	sys.exit()
 
-currency = sys.argv[1].lower()
-if currency not in ['btc', 'bch', 'eth', 'ltc']:
-	if currency in ['-h', 'help', '--help']:
-		print("Usage:\npython percentage.py [cryptocurrency]")
-		sys.exit()
-	print("Invalid argument")
-	sys.exit()
-elif len(sys.argv) > 2 and sys.argv[2] in ['--html']:
-    display(True);
-else:
-    display(False)
+    currency = sys.argv[1].lower()
+    if currency not in ['btc', 'bch', 'eth', 'ltc']:
+    	if currency in ['-h', 'help', '--help']:
+    		print("Usage:\npython percentage.py [cryptocurrency]")
+    		sys.exit()
+    	print("Invalid argument")
+    	sys.exit()
+    elif len(sys.argv) > 2 and sys.argv[2] in ['--html']:
+        display(currency, True);
+    else:
+        display(currency, False)
+
+if __name__ == '__main__':
+    main()
