@@ -21,8 +21,10 @@ def errorHandler(errors):
 def display(b):
     premium = (sell(currency)/buy(currency) - 1) * 100 # quick mafs
     if b == True:
-        info = "<small>buy: " + str(buy(currency)) + " - sell: " + str('%.2f'%sell(currency)) + "</small>"
-        print("<p class='text-center'>" + currency.upper() + ": " + str('%.2f'%premium) + "% " + info + "</p>")
+        info = "<small>buy: " + str(buy(currency)) + " - sell: " \
+        							+ str('%.2f'%sell(currency)) + "</small>"
+        print("<p class='text-center'>" + currency.upper() + ": " \
+        						+ str('%.2f'%premium) + "% " + info + "</p>")
     else:
         info = "buy: " + str(buy(currency)) + " - sell: " + str('%.2f'%sell(currency))
         print( currency.upper() + ": " + str('%.2f'%premium) + "% " + info)
@@ -44,7 +46,8 @@ def krwCalc():
 ################
 def sell(currencyIn):
     try:
-    	req = requests.get("https://api.korbit.co.kr/v1/ticker?currency_pair=" + currencyIn.lower() + "_krw")
+    	req = requests.get("https://api.korbit.co.kr/v1/ticker?currency_pair=" +
+    										      currencyIn.lower() + "_krw")
     	btc_korbit = req.json()
     	sell = float(btc_korbit['last']) / krwCalc()
     	return sell
@@ -56,7 +59,8 @@ def sell(currencyIn):
 ###############
 def buy(currencyIn):
     try:
-    	req = requests.get("https://api.gdax.com/products/" + currencyIn.upper() + "-EUR/ticker")
+    	req = requests.get("https://api.gdax.com/products/" +
+                                            currencyIn.upper() + "-EUR/ticker")
     	btc_gdax = req.json()
     	buy = float(btc_gdax['ask'])
     	return buy
@@ -78,7 +82,7 @@ if currency not in ['btc', 'bch', 'eth', 'ltc']:
 		sys.exit()
 	print("Invalid argument")
 	sys.exit()
-elif len(sys.argv) > 2 and sys.argv[2] in ['--no-html']:
-    display(False);
+elif len(sys.argv) > 2 and sys.argv[2] in ['--html']:
+    display(True);
 else:
-    display(True)
+    display(False)
