@@ -5,7 +5,7 @@ Simple python and bash script that computes the arbitrage percentage between mar
 ### Usage
 
 ```shell
-python percentage.py [cryptocurrency]
+python percentage.py cryptocurrency [marketIn] [marketOut] [options]
 ```
 
 ### Supported Markets and Cryptocurrencies
