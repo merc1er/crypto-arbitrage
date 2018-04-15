@@ -13,7 +13,7 @@ from fetcher import *
 
 
 
-# Default Global Variable
+# Default Global Variables
 marketIn = ['gdax']
 marketOut = ['korbit']
 markets = ['korbit', 'gdax', 'coinone']
@@ -22,41 +22,44 @@ markets = ['korbit', 'gdax', 'coinone']
 ##################
 ####  display ####
 ##################
-def errorHandler(errors):
-    print('Error: ' + errors)
-    sys.exit();
 
 def display(currency, html):
     print("Buy from", marketIn[0], "- Sell to", marketOut[0])
-    premium = (korbit(currency)/gdax(currency) - 1) * 100 # quick mafs
+    buy = fetch(marketIn[0], currency)
+    sell = fetch(marketOut[0], currency)
+    premium = (sell / buy - 1) * 100
     if html:
-        info = "<small>buy: €" + str(gdax(currency)) + " - sell: €" \
-        							+ str('%.2f'%korbit(currency)) + "</small>"
+        info = "<small>buy: €" + str('%.2f'%buy) + " - sell: €" \
+        							+ str('%.2f'%sell) + "</small>"
         print("<p class='text-center'>" + currency.upper() + ": " \
         						+ str('%.2f'%premium) + "% " + info + "</p>")
     else:
-        info = "buy: " + str(gdax(currency)) + " - sell: " +\
-                                                    str('%.2f'%korbit(currency))
-        print( currency.upper() + ": " + str('%.2f'%premium) + "% " + info)
+        info = "buy: " + str('%.2f'%buy) + " - sell: " +\
+                                                    str('%.2f'%sell)
+        print(currency.upper() + ": " + str('%.2f'%premium) + "% " + info)
+
+##############
+### checks ###
+##############
 
 def verifyArgs():
-    # checking arguments
     if len(sys.argv) < 2:
         print("Usage:\npython percentage.py cryptocurrency [marketIn] " +
                                                         "[marketOut] [options]")
         sys.exit()
-    currency = sys.argv[1].lower()
+    # checking length
     if len(sys.argv) > 3:
         marketIn[0] = sys.argv[2].lower()
         marketOut[0] = sys.argv[3].lower()
-
+    # checking argument 1
+    currency = sys.argv[1].lower()
     if currency not in ['btc', 'bch', 'eth', 'ltc']:
         if currency in ['-h', 'help', '--help']:
             print("Usage:\npython percentage.py [cryptocurrency]")
             sys.exit()
         print("Invalid argument")
         sys.exit()
-
+    # and now the rest
     if marketIn[0] not in markets or marketOut[0] not in markets:
         print("Invalid market name")
         sys.exit()
@@ -67,7 +70,12 @@ def verifyArgs():
 #############
 
 def fetch(market, currency):
-    pass
+    if market == "gdax":
+        return gdax(currency)
+    if market == "coinone":
+        return coinone(currency)
+    if market == "korbit":
+        return korbit(currency)
 
 ################################################################################
 # main
