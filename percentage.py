@@ -14,9 +14,9 @@ from fetcher import *
 
 
 # Default Global Variable
-marketIn = ["gdax"]
-marketOut = ["korbit"]
-markets = ['korbit', 'dgax', 'coinone']
+marketIn = ['gdax']
+marketOut = ['korbit']
+markets = ['korbit', 'gdax', 'coinone']
 
 
 ##################
@@ -56,7 +56,18 @@ def verifyArgs():
             sys.exit()
         print("Invalid argument")
         sys.exit()
+
+    if marketIn[0] not in markets or marketOut[0] not in markets:
+        print("Invalid market name")
+        sys.exit()
     return currency
+
+#############
+### FETCH ###
+#############
+
+def fetch(market, currency):
+    pass
 
 ################################################################################
 # main
