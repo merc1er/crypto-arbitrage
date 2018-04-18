@@ -37,7 +37,7 @@ def korbit(currencyIn):
         price = float(btc_korbit['last']) / krwCalc()
         return price
     except Exception as e:
-        errorHandler('Could not fetch from korbit API')
+        errorHandler('Could not fetch from korbit')
 
 #################
 #### COINONE ####
@@ -51,7 +51,7 @@ def coinone(currencyIn):
         price = float(btc_coinone['last']) / krwCalc()
         return price
     except Exception as e:
-        errorHandler('Could not fetch from coinone API')
+        errorHandler('Could not fetch from coinone')
 
 ###############
 #### G-DAX ####
@@ -65,3 +65,17 @@ def gdax(currencyIn):
         return price
     except Exception as e:
         errorHandler('Could not fetch from gdax')
+
+###############
+### BITTREX ###
+###############
+
+def bittrex(currencyIn):
+    try:
+        req = requests.get("https://bittrex.com/api/v1.1/public/getticker?market=" +
+                                            currencyIn.upper() + "-btc")
+        btc_gdax = req.json()
+        price = float(btc_gdax['ask'])
+        return price
+    except Exception as e:
+        errorHandler('Could not fetch from bittrex')
