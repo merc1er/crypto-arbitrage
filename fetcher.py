@@ -71,6 +71,9 @@ def gdax(currencyIn):
 ###############
 
 def bittrex(currencyIn):
+    """
+    not deployed
+    """
     try:
         req = requests.get("https://bittrex.com/api/v1.1/public/getticker?market=" +
                                             currencyIn.upper() + "-btc")
