@@ -77,8 +77,20 @@ def bittrex(currencyIn):
     try:
         req = requests.get("https://bittrex.com/api/v1.1/public/getticker?market=" +
                                             currencyIn.upper() + "-btc")
-        btc_gdax = req.json()
-        price = float(btc_gdax['ask'])
+        price_json = req.json()
+        price = float(price_json['ask'])
         return price
     except Exception as e:
         errorHandler('Could not fetch from bittrex')
+
+###################
+### CRYPTONATOR ###
+###################
+
+def cryptonator():
+    try:
+        req = requests.get("https://api.cryptonator.com/api/full/btc-eur")
+        callback = req.json()
+        print(callback)
+    except Exception as e:
+        errorHandler('Could not fetch from cryptonator')
