@@ -16,7 +16,15 @@ from fetcher import *
 # Default Global Variables
 marketIn = ['gdax']
 marketOut = ['korbit']
-markets = ['korbit', 'gdax', 'coinone']
+markets = [ 'korbit',
+            'gdax',
+            'coinone',
+            'bitfinex',
+            'cexio',
+            'exmo',
+            'kraken',
+            'livecoin',
+            'wexnz']
 accepted_currencies = ['btc', 'bch', 'eth', 'ltc']
 
 
@@ -78,6 +86,8 @@ def fetch(market, currency):
         return coinone(currency)
     if market == "korbit":
         return korbit(currency)
+    else:
+        return float(cryptonator(currency, market))
 
 ################################################################################
 # main
@@ -90,5 +100,4 @@ def main():
         display(currency, False)
 
 if __name__ == '__main__':
-    # cryptonator('btc') # tests
     main()
