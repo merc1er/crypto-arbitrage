@@ -59,6 +59,7 @@ def verifyArgs():
             print("Usage:\npython percentage.py [cryptocurrency]")
             sys.exit()
         print("Invalid argument")
+        print("Supported currencies are:", accepted_currencies)
         sys.exit()
     # and now the rest
     if marketIn[0] not in markets or marketOut[0] not in markets:
