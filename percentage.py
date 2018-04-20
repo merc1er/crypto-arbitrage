@@ -90,5 +90,5 @@ def main():
         display(currency, False)
 
 if __name__ == '__main__':
-    # cryptonator('btc')
+    # cryptonator('btc') # tests
     main()

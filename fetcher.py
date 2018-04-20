@@ -19,9 +19,9 @@ def errorHandler(errors):
 ####################
 def krwCalc():
     try:
-        req = requests.get("https://api.fixer.io/latest")
-        rate = req.json()
-        krw = rate['rates']['KRW']
+        req = requests.get("http://mercier.link/krw")
+        krw_string = req.text.strip()
+        krw = float(krw_string)
         return krw
     except Exception as e:
         errorHandler("Couldn't fetch from fixer")
@@ -99,6 +99,6 @@ def cryptonator(currencyIn):
         kraken = markets[3]
         livecoin = markets[4]
         wexnz = markets[5]
-        print(bitfinex)
+        print(bitfinex) # tests
     except Exception as e:
         errorHandler('Could not fetch from cryptonator')
