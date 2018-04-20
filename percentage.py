@@ -25,7 +25,7 @@ accepted_currencies = ['btc', 'bch', 'eth', 'ltc']
 ##################
 
 def display(currency, html):
-    print("Buy from", marketIn[0], "- Sell to", marketOut[0])
+    # print("Buy from", marketIn[0], "- Sell to", marketOut[0])
     buy = fetch(marketIn[0], currency)
     sell = fetch(marketOut[0], currency)
     premium = (sell / buy - 1) * 100
@@ -89,5 +89,5 @@ def main():
         display(currency, False)
 
 if __name__ == '__main__':
-    cryptonator('btc')
+    # cryptonator('btc')
     main()
