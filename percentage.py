@@ -17,6 +17,7 @@ from fetcher import *
 marketIn = ['gdax']
 marketOut = ['korbit']
 markets = ['korbit', 'gdax', 'coinone']
+accepted_currencies = ['btc', 'bch', 'eth', 'ltc']
 
 
 ##################
@@ -53,7 +54,7 @@ def verifyArgs():
         marketOut[0] = sys.argv[3].lower()
     # checking argument 1
     currency = sys.argv[1].lower()
-    if currency not in ['btc', 'bch', 'eth', 'ltc']:
+    if currency not in accepted_currencies:
         if currency in ['-h', 'help', '--help']:
             print("Usage:\npython percentage.py [cryptocurrency]")
             sys.exit()
@@ -88,4 +89,5 @@ def main():
         display(currency, False)
 
 if __name__ == '__main__':
+    cryptonator('btc')
     main()

@@ -87,10 +87,18 @@ def bittrex(currencyIn):
 ### CRYPTONATOR ###
 ###################
 
-def cryptonator():
+def cryptonator(currencyIn):
     try:
-        req = requests.get("https://api.cryptonator.com/api/full/btc-eur")
+        req = requests.get("https://api.cryptonator.com/api/full/" +
+                                                    currencyIn.lower() + "-eur")
         callback = req.json()
-        print(callback)
+        markets = callback['ticker']['markets']
+        bitfinex = markets[0]
+        cexio = markets[1]
+        exmo = markets[2]
+        kraken = markets[3]
+        livecoin = markets[4]
+        wexnz = markets[5]
+        print(bitfinex)
     except Exception as e:
         errorHandler('Could not fetch from cryptonator')
