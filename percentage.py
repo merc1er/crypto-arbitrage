@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 __author__ = "merc1er"
 __version__ = "0.5"
@@ -29,7 +30,7 @@ def display(currency, html):
     sell = fetch(marketOut[0], currency)
     premium = (sell / buy - 1) * 100
     if html:
-        info = "<small>buy: €" + str('%.2f'%buy) + " - sell: €" \
+        info = "<small>buy: " + str('%.2f'%buy) + " - sell: " \
         							+ str('%.2f'%sell) + "</small>"
         print("<p class='text-center'>" + currency.upper() + ": " \
         						+ str('%.2f'%premium) + "% " + info + "</p>")
