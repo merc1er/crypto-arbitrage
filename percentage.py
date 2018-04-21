@@ -16,6 +16,7 @@ from fetcher import *
 # Default Global Variables
 marketIn = ['gdax']
 marketOut = ['korbit']
+
 markets = [ 'korbit',
             'gdax',
             'coinone',

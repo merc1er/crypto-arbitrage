@@ -107,3 +107,8 @@ def cryptonator(currencyIn, market):
             return markets[5]['price']
     except Exception as e:
         errorHandler('Could not fetch from cryptonator')
+
+################################################################################
+#
+# ADD MARKETS APIs HERE
+#
