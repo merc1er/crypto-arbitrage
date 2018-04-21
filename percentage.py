@@ -8,6 +8,8 @@ __email__ = "corentin@mercier.link"
 
 ################################################################################
 import sys
+import time
+from subprocess import call
 from fetcher import *
 ################################################################################
 
@@ -90,6 +92,21 @@ def fetch(market, currency):
     else:
         return float(cryptonator(currency, market))
 
+#################
+### Loop mode ###
+#################
+
+def loop(currency):
+    print("\r\nEntering loop mode. Press ctrl + c to exit");
+    while True:
+        try:
+            display(currency, False);
+            time.sleep(2)
+        except KeyboardInterrupt:
+            print("\r\nQuitting...")
+            sys.exit()
+
+
 ################################################################################
 # main
 
@@ -97,6 +114,8 @@ def main():
     currency = verifyArgs()
     if len(sys.argv) > 2 and sys.argv[-1] in ['--html']:
         display(currency, True);
+    elif len(sys.argv) > 2 and sys.argv[-1] in ['--loop']:
+        loop(currency)
     else:
         display(currency, False)
 
