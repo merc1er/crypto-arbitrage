@@ -25,3 +25,8 @@ python percentage.py [cryptocurrency] [marketIn] [marketOut] [options]
 - BTC
 - ETH
 - LTC
+
+#### Options
+
+- --html | Output in html for easy usage in webapps.
+- --loop | Enter loop mode, the program will repeat checking every few seconds.
