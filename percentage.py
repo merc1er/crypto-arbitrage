@@ -75,6 +75,8 @@ def verifyArgs():
     # and now the rest
     if marketIn[0] not in markets or marketOut[0] not in markets:
         print("Invalid market name")
+        print("Here is the list of supported markets:")
+        print(markets)
         sys.exit()
     return currency
 
