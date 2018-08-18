@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 __author__ = "merc1er"
-__version__ = "0.5"
 __email__ = "corentin@mercier.link"
 
 
@@ -28,7 +27,7 @@ markets = [ 'korbit',
             'kraken',
             'livecoin',
             'wexnz']
-accepted_currencies = ['btc', 'bch', 'eth', 'ltc']
+accepted_currencies = ['bch', 'btc', 'eth', 'ltc', 'etc']
 
 
 ##################
