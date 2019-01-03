@@ -8,8 +8,7 @@
 import sys
 import requests
 import json
-
-FIXER_API_KEY = ''
+from secret import FIXER_API_KEY
 
 def errorHandler(errors):
     print('Error: ' + errors)
@@ -19,6 +18,8 @@ def errorHandler(errors):
 #### krw to eur ####
 ####################
 def krwCalc():
+    if FIXER_API_KEY == '':
+        errorHandler('Input your fixer.io API key in secrets.py')
     try:
         endpoint = 'http://data.fixer.io/api/latest?access_key='
         req = requests.get(endpoint + FIXER_API_KEY)
@@ -60,7 +61,7 @@ def coinone(currencyIn):
 ###############
 def gdax(currencyIn):
     try:
-        req = requests.get("https://api.gdax.com/products/" +
+        req = requests.get("https://api.pro.coinbase.com/products/" +
                                             currencyIn.upper() + "-EUR/ticker")
         btc_gdax = req.json()
         price = float(btc_gdax['ask'])

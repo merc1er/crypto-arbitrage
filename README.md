@@ -13,7 +13,7 @@ python percentage.py [cryptocurrency] [marketIn] [marketOut] [options]
 #### Markets:
 
 - Europe/NA:
-	- gdax
+	- Coinbase Pro
 
 - Asia:
 	- coinone
