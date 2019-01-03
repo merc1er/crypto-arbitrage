@@ -17,8 +17,9 @@ from fetcher import *
 marketIn = ['gdax']
 marketOut = ['korbit']
 
-markets = [ 'korbit',
+MARKETS = [ 'korbit',
             'gdax',
+            'coinbase',
             'coinone',
             'bitfinex',
             'cexio',
@@ -72,10 +73,10 @@ def verifyArgs():
         print("Supported currencies are:", accepted_currencies)
         sys.exit()
     # and now the rest
-    if marketIn[0] not in markets or marketOut[0] not in markets:
+    if marketIn[0] not in MARKETS or marketOut[0] not in MARKETS:
         print("Invalid market name")
-        print("Here is the list of supported markets:")
-        print(markets)
+        print("Here is the list of supported MARKETS:")
+        print(MARKETS)
         sys.exit()
     return currency
 
