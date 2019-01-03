@@ -19,8 +19,10 @@ def errorHandler(errors):
 ####################
 def krwCalc():
     try:
-        req = requests.get("http://mercier.link/krw")
-        krw_string = req.text.strip()
+        endpoint = 'http://data.fixer.io/api/latest?access_key='
+        fixer_api_key = 'XXXXXXXXXXXXXX'
+        req = requests.get(endpoint + fixer_api_key)
+        krw_string = req.json()['rates']['KRW']
         krw = float(krw_string)
         return krw
     except Exception as e:
