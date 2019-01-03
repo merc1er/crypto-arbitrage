@@ -1,1 +1,0 @@
-FIXER_API_KEY = ''
