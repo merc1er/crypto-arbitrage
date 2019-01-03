@@ -8,7 +8,6 @@ __email__ = "corentin@mercier.link"
 ################################################################################
 import sys
 import time
-from subprocess import call
 from fetcher import *
 ################################################################################
 
@@ -27,6 +26,7 @@ markets = [ 'korbit',
             'kraken',
             'livecoin',
             'wexnz']
+
 accepted_currencies = ['bch', 'btc', 'eth', 'ltc', 'etc']
 
 
