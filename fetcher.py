@@ -9,6 +9,7 @@ import sys
 import requests
 import json
 
+FIXER_API_KEY = ''
 
 def errorHandler(errors):
     print('Error: ' + errors)
@@ -20,8 +21,7 @@ def errorHandler(errors):
 def krwCalc():
     try:
         endpoint = 'http://data.fixer.io/api/latest?access_key='
-        fixer_api_key = 'XXXXXXXXXXXXXX'
-        req = requests.get(endpoint + fixer_api_key)
+        req = requests.get(endpoint + FIXER_API_KEY)
         krw_string = req.json()['rates']['KRW']
         krw = float(krw_string)
         return krw
