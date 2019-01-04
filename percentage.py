@@ -69,6 +69,9 @@ def verifyArgs():
         if currency in ['-h', 'help', '--help']:
             print("Usage:\npython percentage.py [cryptocurrency]")
             sys.exit()
+        if currency in ['market', 'markets', 'exchange', 'exchanges']:
+            print("Supported exchanges: " + ', '.join(MARKETS))
+            sys.exit()
         print("Invalid argument")
         print("Supported currencies are:", accepted_currencies)
         sys.exit()
