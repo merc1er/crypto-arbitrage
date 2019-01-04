@@ -8,7 +8,7 @@
 import sys
 import requests
 import json
-from secret import FIXER_API_KEY
+from .secret import FIXER_API_KEY
 
 def errorHandler(errors):
     print('Error: ' + errors)
