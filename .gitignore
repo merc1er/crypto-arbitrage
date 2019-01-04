@@ -1,5 +1,4 @@
 .DS_Store
 __pycache__
 prices*
-secret.py
 README.html
