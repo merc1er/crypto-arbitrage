@@ -1,11 +1,11 @@
-# Cryptocurrencies exchange markets arbitrage
+# Cryptocurrency exchange arbitrage software
 
-This progam computes the arbitrage percentage between exchanges
+This progam calculates the arbitrage percentage between exchanges
 
 ### Usage
 
 ```shell
-python percentage.py [cryptocurrency] [marketIn] [marketOut] [options]
+python percentage.py cryptocurrency [marketIn] [marketOut] [options]
 ```
 
 ### Supported Markets and Cryptocurrencies
@@ -13,7 +13,7 @@ python percentage.py [cryptocurrency] [marketIn] [marketOut] [options]
 #### Markets:
 
 - Europe/NA:
-	- gdax
+	- Coinbase Pro
 
 - Asia:
 	- coinone

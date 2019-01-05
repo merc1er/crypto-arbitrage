@@ -8,8 +8,7 @@ __email__ = "corentin@mercier.link"
 ################################################################################
 import sys
 import time
-from subprocess import call
-from fetcher import *
+from src.fetcher import *
 ################################################################################
 
 
@@ -18,8 +17,9 @@ from fetcher import *
 marketIn = ['gdax']
 marketOut = ['korbit']
 
-markets = [ 'korbit',
+MARKETS = [ 'korbit',
             'gdax',
+            'coinbase',
             'coinone',
             'bitfinex',
             'cexio',
@@ -27,6 +27,7 @@ markets = [ 'korbit',
             'kraken',
             'livecoin',
             'wexnz']
+
 accepted_currencies = ['bch', 'btc', 'eth', 'ltc', 'etc']
 
 
@@ -68,14 +69,17 @@ def verifyArgs():
         if currency in ['-h', 'help', '--help']:
             print("Usage:\npython percentage.py [cryptocurrency]")
             sys.exit()
+        if currency in ['market', 'markets', 'exchange', 'exchanges']:
+            print("Supported exchanges: " + ', '.join(MARKETS))
+            sys.exit()
         print("Invalid argument")
         print("Supported currencies are:", accepted_currencies)
         sys.exit()
     # and now the rest
-    if marketIn[0] not in markets or marketOut[0] not in markets:
+    if marketIn[0] not in MARKETS or marketOut[0] not in MARKETS:
         print("Invalid market name")
-        print("Here is the list of supported markets:")
-        print(markets)
+        print("Here is the list of supported MARKETS:")
+        print(MARKETS)
         sys.exit()
     return currency
 
