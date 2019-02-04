@@ -8,7 +8,7 @@ __email__ = "corentin@mercier.link"
 ################################################################################
 import sys
 import time
-from fetcher import *
+from src.fetcher import *
 ################################################################################
 
 
@@ -17,17 +17,19 @@ from fetcher import *
 marketIn = ['gdax']
 marketOut = ['korbit']
 
-markets = [ 'korbit',
+MARKETS = [ 'korbit',
             'gdax',
+            'coinbase',
             'coinone',
-            'bitfinex',
-            'cexio',
-            'exmo',
-            'kraken',
-            'livecoin',
-            'wexnz']
+            # 'bitfinex',
+            # 'cexio',
+            # 'exmo',
+            # 'kraken',
+            # 'livecoin',
+            # 'wexnz'
+]
 
-accepted_currencies = ['bch', 'btc', 'eth', 'ltc', 'etc']
+ACCEPTED_CURRENCIES = ['bch', 'btc', 'eth', 'ltc', 'etc']
 
 
 ##################
@@ -64,18 +66,21 @@ def verifyArgs():
         marketOut[0] = sys.argv[3].lower()
     # checking argument 1
     currency = sys.argv[1].lower()
-    if currency not in accepted_currencies:
+    if currency not in ACCEPTED_CURRENCIES:
         if currency in ['-h', 'help', '--help']:
             print("Usage:\npython percentage.py [cryptocurrency]")
             sys.exit()
+        if currency in ['market', 'markets', 'exchange', 'exchanges']:
+            print("Supported exchanges: " + ', '.join(MARKETS))
+            sys.exit()
         print("Invalid argument")
-        print("Supported currencies are:", accepted_currencies)
+        print("Supported currencies are:", ACCEPTED_CURRENCIES)
         sys.exit()
     # and now the rest
-    if marketIn[0] not in markets or marketOut[0] not in markets:
+    if marketIn[0] not in MARKETS or marketOut[0] not in MARKETS:
         print("Invalid market name")
-        print("Here is the list of supported markets:")
-        print(markets)
+        print("Here is the list of supported MARKETS:")
+        print(MARKETS)
         sys.exit()
     return currency
 
@@ -84,14 +89,15 @@ def verifyArgs():
 #############
 
 def fetch(market, currency):
-    if market == "gdax":
+    if market == "gdax" or market == "coinbase":
         return gdax(currency)
     if market == "coinone":
         return coinone(currency)
     if market == "korbit":
         return korbit(currency)
-    else:
-        return float(cryptonator(currency, market))
+    return 'Something wrong happened'
+    # else:
+    #     return float(cryptonator(currency, market))
 
 #################
 ### Loop mode ###
