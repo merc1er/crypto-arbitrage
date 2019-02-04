@@ -21,12 +21,13 @@ MARKETS = [ 'korbit',
             'gdax',
             'coinbase',
             'coinone',
-            'bitfinex',
-            'cexio',
-            'exmo',
-            'kraken',
-            'livecoin',
-            'wexnz']
+            # 'bitfinex',
+            # 'cexio',
+            # 'exmo',
+            # 'kraken',
+            # 'livecoin',
+            # 'wexnz'
+]
 
 accepted_currencies = ['bch', 'btc', 'eth', 'ltc', 'etc']
 
@@ -88,7 +89,7 @@ def verifyArgs():
 #############
 
 def fetch(market, currency):
-    if market == "gdax":
+    if market == "gdax" or market == "coinbase":
         return gdax(currency)
     if market == "coinone":
         return coinone(currency)
