@@ -95,8 +95,9 @@ def fetch(market, currency):
         return coinone(currency)
     if market == "korbit":
         return korbit(currency)
-    else:
-        return float(cryptonator(currency, market))
+    return 'Something wrong happened'
+    # else:
+    #     return float(cryptonator(currency, market))
 
 #################
 ### Loop mode ###
