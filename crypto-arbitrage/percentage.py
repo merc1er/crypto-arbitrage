@@ -5,7 +5,7 @@ import time
 from src.fetcher import *
 
 
-marketIn = ['gdax']
+marketIn = ['coinbase']
 marketOut = ['korbit']
 
 MARKETS = [
