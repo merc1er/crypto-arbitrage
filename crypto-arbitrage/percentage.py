@@ -86,7 +86,7 @@ def loop(currency):
     while True:
         try:
             display(currency, False)
-            time.sleep(2)
+            time.sleep(60)
         except KeyboardInterrupt:
             print("\r\nQuitting...")
             sys.exit()
