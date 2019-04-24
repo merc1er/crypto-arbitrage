@@ -9,13 +9,11 @@ import time
 from src.fetcher import *
 
 
-# Default Global Variables
 marketIn = ['gdax']
 marketOut = ['korbit']
 
 MARKETS = [
     'korbit',
-    'gdax',
     'coinbase',
     'coinone',
     # 'bitfinex',
@@ -28,10 +26,6 @@ MARKETS = [
 
 ACCEPTED_CURRENCIES = ['bch', 'btc', 'eth', 'ltc', 'etc']
 
-
-##################
-####  display ####
-##################
 
 def display(currency, html):
     # print("Buy from", marketIn[0], "- Sell to", marketOut[0])
@@ -47,10 +41,6 @@ def display(currency, html):
         info = "buy: " + str('%.2f' % buy) + " - sell: " +\
             str('%.2f' % sell)
         print(currency.upper() + ": " + str('%.2f' % premium) + "% " + info)
-
-##############
-### checks ###
-##############
 
 
 def verifyArgs():
@@ -82,25 +72,17 @@ def verifyArgs():
         sys.exit()
     return currency
 
-#############
-### FETCH ###
-#############
-
 
 def fetch(market, currency):
-    if market == "gdax" or market == "coinbase":
+    if market == 'coinbase':
         return gdax(currency)
-    if market == "coinone":
+    if market == 'coinone':
         return coinone(currency)
-    if market == "korbit":
+    if market == 'korbit':
         return korbit(currency)
     return 'Something wrong happened'
     # else:
     #     return float(cryptonator(currency, market))
-
-#################
-### Loop mode ###
-#################
 
 
 def loop(currency):
