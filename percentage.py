@@ -55,8 +55,8 @@ def display(currency, html):
 
 def verifyArgs():
     if len(sys.argv) < 2:
-        print("Usage:\npython percentage.py cryptocurrency [marketIn] " +
-              "[marketOut] [options]")
+        print('Usage:\npython percentage.py cryptocurrency [marketIn] '
+              '[marketOut] [options]')
         sys.exit()
     # checking length
     if len(sys.argv) > 3:

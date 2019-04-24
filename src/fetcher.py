@@ -13,12 +13,9 @@ def errorHandler(errors):
     print('Error: ' + errors)
     sys.exit()
 
-####################
-#### krw to eur ####
-####################
-
 
 def krwCalc():
+    """ Converts 1 EUR to KRW"""
     if FIXER_API_KEY == '':
         errorHandler('Input your fixer.io API key in secrets.py')
     try:
@@ -27,75 +24,57 @@ def krwCalc():
         krw_string = req.json()['rates']['KRW']
         krw = float(krw_string)
         return krw
-    except Exception as e:
-        errorHandler("Couldn't fetch from fixer")
-
-################
-#### KORBIT ####
-################
+    except Exception:
+        errorHandler("Couldn't fetch from fixer.io")
 
 
 def korbit(currencyIn):
+    """ Returns the value of 1 currencyIn according to korbit """
     try:
-        req = requests.get('https://api.korbit.co.kr/v1/ticker?currency_pair=' +
-                           currencyIn.lower() + "_krw")
+        korbit_endpoint = 'https://api.korbit.co.kr/v1/ticker?currency_pair='
+        req = requests.get(korbit_endpoint + currencyIn.lower() + "_krw")
         btc_korbit = req.json()
         price = float(btc_korbit['last']) / krwCalc()
         return price
-    except Exception as e:
+    except Exception:
         errorHandler('Could not fetch from korbit')
-
-#################
-#### COINONE ####
-#################
 
 
 def coinone(currencyIn):
+    """ Returns the value of 1 currencyIn according to coinone """
     try:
         req = requests.get(url="https://api.coinone.co.kr/ticker/",
-                           params={"currency": currency})
+                           params={"currency": currencyIn})
         btc_coinone = req.json()
         price = float(btc_coinone['last']) / krwCalc()
         return price
-    except Exception as e:
+    except Exception:
         errorHandler('Could not fetch from coinone')
-
-###############
-#### G-DAX ####
-###############
 
 
 def gdax(currencyIn):
+    """ Returns the value of 1 currencyIn according to Coinbase Pro """
     try:
         req = requests.get("https://api.pro.coinbase.com/products/" +
                            currencyIn.upper() + "-EUR/ticker")
         btc_gdax = req.json()
         price = float(btc_gdax['ask'])
         return price
-    except Exception as e:
-        errorHandler('Could not fetch from gdax')
-
-###############
-### BITTREX ###
-###############
+    except Exception:
+        errorHandler('Could not fetch from Coinbase Pro')
 
 
 def bittrex(currencyIn):
-    """
-    not deployed
-    """
+    """ Returns the value of 1 currencyIn according to bittrex """
     try:
-        req = requests.get("https://bittrex.com/api/v1.1/public/getticker?market=" +
-                           currencyIn.upper() + "-btc")
+        bittrex_endpoint = ('https://bittrex.com/api/v1.1/public'
+                            '/getticker?market=')
+        req = requests.get(bittrex_endpoint + currencyIn.upper() + "-btc")
         price_json = req.json()
         price = float(price_json['ask'])
         return price
-    except Exception as e:
+    except Exception:
         errorHandler('Could not fetch from bittrex')
-
-###################
-### CRYPTONATOR ###
-###################
 
 
 def cryptonator(currencyIn, market):
@@ -116,10 +95,10 @@ def cryptonator(currencyIn, market):
             return markets[4]['price']
         if market == 'wexnz':
             return markets[5]['price']
-    except Exception as e:
+    except Exception:
         errorHandler('Could not fetch from cryptonator')
 
-################################################################################
+###############################################################################
 #
 # ADD MARKETS APIs HERE
 #
