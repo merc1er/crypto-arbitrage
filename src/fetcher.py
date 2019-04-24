@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 #
 # fetches the market price from the exchanges
@@ -7,16 +6,18 @@
 
 import sys
 import requests
-import json
 from .secret import FIXER_API_KEY
+
 
 def errorHandler(errors):
     print('Error: ' + errors)
-    sys.exit();
+    sys.exit()
 
 ####################
 #### krw to eur ####
 ####################
+
+
 def krwCalc():
     if FIXER_API_KEY == '':
         errorHandler('Input your fixer.io API key in secrets.py')
@@ -32,10 +33,12 @@ def krwCalc():
 ################
 #### KORBIT ####
 ################
+
+
 def korbit(currencyIn):
     try:
-        req = requests.get("https://api.korbit.co.kr/v1/ticker?currency_pair=" +
-                                                  currencyIn.lower() + "_krw")
+        req = requests.get('https://api.korbit.co.kr/v1/ticker?currency_pair=' +
+                           currencyIn.lower() + "_krw")
         btc_korbit = req.json()
         price = float(btc_korbit['last']) / krwCalc()
         return price
@@ -46,10 +49,11 @@ def korbit(currencyIn):
 #### COINONE ####
 #################
 
+
 def coinone(currencyIn):
     try:
-        req = requests.get(url = "https://api.coinone.co.kr/ticker/",
-                                                params = {"currency":currency})
+        req = requests.get(url="https://api.coinone.co.kr/ticker/",
+                           params={"currency": currency})
         btc_coinone = req.json()
         price = float(btc_coinone['last']) / krwCalc()
         return price
@@ -59,10 +63,12 @@ def coinone(currencyIn):
 ###############
 #### G-DAX ####
 ###############
+
+
 def gdax(currencyIn):
     try:
         req = requests.get("https://api.pro.coinbase.com/products/" +
-                                            currencyIn.upper() + "-EUR/ticker")
+                           currencyIn.upper() + "-EUR/ticker")
         btc_gdax = req.json()
         price = float(btc_gdax['ask'])
         return price
@@ -73,13 +79,14 @@ def gdax(currencyIn):
 ### BITTREX ###
 ###############
 
+
 def bittrex(currencyIn):
     """
     not deployed
     """
     try:
         req = requests.get("https://bittrex.com/api/v1.1/public/getticker?market=" +
-                                            currencyIn.upper() + "-btc")
+                           currencyIn.upper() + "-btc")
         price_json = req.json()
         price = float(price_json['ask'])
         return price
@@ -90,10 +97,11 @@ def bittrex(currencyIn):
 ### CRYPTONATOR ###
 ###################
 
+
 def cryptonator(currencyIn, market):
     try:
         req = requests.get("https://api.cryptonator.com/api/full/" +
-                                                    currencyIn.lower() + "-eur")
+                           currencyIn.lower() + "-eur")
         callback = req.json()
         markets = callback['ticker']['markets']
         if market == 'bitfinex':

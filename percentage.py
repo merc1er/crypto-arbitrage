@@ -1,32 +1,29 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 
 __author__ = "merc1er"
 __email__ = "corentin@mercier.link"
 
 
-################################################################################
 import sys
 import time
 from src.fetcher import *
-################################################################################
-
 
 
 # Default Global Variables
 marketIn = ['gdax']
 marketOut = ['korbit']
 
-MARKETS = [ 'korbit',
-            'gdax',
-            'coinbase',
-            'coinone',
-            # 'bitfinex',
-            # 'cexio',
-            # 'exmo',
-            # 'kraken',
-            # 'livecoin',
-            # 'wexnz'
+MARKETS = [
+    'korbit',
+    'gdax',
+    'coinbase',
+    'coinone',
+    # 'bitfinex',
+    # 'cexio',
+    # 'exmo',
+    # 'kraken',
+    # 'livecoin',
+    # 'wexnz'
 ]
 
 ACCEPTED_CURRENCIES = ['bch', 'btc', 'eth', 'ltc', 'etc']
@@ -42,23 +39,24 @@ def display(currency, html):
     sell = fetch(marketOut[0], currency)
     premium = (sell / buy - 1) * 100
     if html:
-        info = "<small>buy: " + str('%.2f'%buy) + " - sell: " \
-        							+ str('%.2f'%sell) + "</small>"
-        print("<p class='text-center'>" + currency.upper() + ": " \
-        						+ str('%.2f'%premium) + "% " + info + "</p>")
+        info = "<small>buy: " + str('%.2f' % buy) + " - sell: " \
+            + str('%.2f' % sell) + "</small>"
+        print("<p class='text-center'>" + currency.upper() + ": " +
+              str('%.2f' % premium) + "% " + info + "</p>")
     else:
-        info = "buy: " + str('%.2f'%buy) + " - sell: " +\
-                                                    str('%.2f'%sell)
-        print(currency.upper() + ": " + str('%.2f'%premium) + "% " + info)
+        info = "buy: " + str('%.2f' % buy) + " - sell: " +\
+            str('%.2f' % sell)
+        print(currency.upper() + ": " + str('%.2f' % premium) + "% " + info)
 
 ##############
 ### checks ###
 ##############
 
+
 def verifyArgs():
     if len(sys.argv) < 2:
         print("Usage:\npython percentage.py cryptocurrency [marketIn] " +
-                                                        "[marketOut] [options]")
+              "[marketOut] [options]")
         sys.exit()
     # checking length
     if len(sys.argv) > 3:
@@ -88,6 +86,7 @@ def verifyArgs():
 ### FETCH ###
 #############
 
+
 def fetch(market, currency):
     if market == "gdax" or market == "coinbase":
         return gdax(currency)
@@ -103,28 +102,27 @@ def fetch(market, currency):
 ### Loop mode ###
 #################
 
+
 def loop(currency):
-    print("\r\nEntering loop mode. Press ctrl + c to exit");
+    print("\r\nEntering loop mode. Press ctrl + c to exit")
     while True:
         try:
-            display(currency, False);
+            display(currency, False)
             time.sleep(2)
         except KeyboardInterrupt:
             print("\r\nQuitting...")
             sys.exit()
 
 
-################################################################################
-# main
-
 def main():
     currency = verifyArgs()
     if len(sys.argv) > 2 and sys.argv[-1] in ['--html']:
-        display(currency, True);
+        display(currency, True)
     elif len(sys.argv) > 2 and sys.argv[-1] in ['--loop']:
         loop(currency)
     else:
         display(currency, False)
+
 
 if __name__ == '__main__':
     main()
