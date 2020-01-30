@@ -25,10 +25,9 @@ ACCEPTED_CURRENCIES = ['bch', 'btc', 'eth', 'ltc', 'etc']
 
 
 def display(currency, html):
-    # print("Buy from", marketIn[0], "- Sell to", marketOut[0])
+    print("Buy from", marketIn[0], "- Sell to", marketOut[0])
     buy = fetch(marketIn[0], currency)
     sell = fetch(marketOut[0], currency)
-    print(sell, buy)
     premium = (sell / buy - 1) * 100
     if html:
         info = "<small>buy: " + str('%.2f' % buy) + " - sell: " \
