@@ -66,15 +66,12 @@ def gdax(currencyIn):
 
 def bittrex(currencyIn):
     """ Returns the value of 1 currencyIn according to bittrex """
-    try:
-        bittrex_endpoint = ('https://bittrex.com/api/v1.1/public'
-                            '/getticker?market=')
-        req = requests.get(bittrex_endpoint + currencyIn.upper() + "-btc")
-        price_json = req.json()
-        price = float(price_json['ask'])
-        return price
-    except Exception:
-        errorHandler('Could not fetch from bittrex')
+    bittrex_endpoint = ('https://bittrex.com/api/v1.1/public'
+                        '/getticker?market=')
+    req = requests.get(bittrex_endpoint + "usd-" + currencyIn.upper())
+    price_json = req.json()
+    price = float(price_json['result']['Last'])
+    return price
 
 
 def cryptonator(currencyIn, market):
