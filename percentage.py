@@ -38,7 +38,7 @@ def display(currency, html):
         print("<p class='text-center'>" + currency.upper() + ": " +
               str('%.2f' % premium) + "% " + info + "</p>")
     else:
-        info = "buy: " + str('%.2f' % buy) + " - sell: " +\
+        info = "buy: EUR " + str('%.2f' % buy) + " - sell: EUR " +\
             str('%.2f' % sell)
         print(currency.upper() + ": " + str('%.2f' % premium) + "% " + info)
 
