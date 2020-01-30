@@ -1,15 +1,11 @@
 #!/usr/bin/env python3
 
-__author__ = "merc1er"
-__email__ = "corentin@mercier.link"
-
-
 import sys
 import time
 from src.fetcher import *
 
 
-marketIn = ['gdax']
+marketIn = ['coinbase']
 marketOut = ['korbit']
 
 MARKETS = [
@@ -94,7 +90,7 @@ def loop(currency):
     while True:
         try:
             display(currency, False)
-            time.sleep(2)
+            time.sleep(60)
         except KeyboardInterrupt:
             print("\r\nQuitting...")
             sys.exit()
