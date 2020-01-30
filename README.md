@@ -25,3 +25,4 @@ python percentage.py cryptocurrency [marketIn] [marketOut] [options]
 - BTC
 - ETH
 - LTC
+- ETC
