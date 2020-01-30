@@ -16,6 +16,7 @@ MARKETS = [
     'korbit',
     'coinbase',
     'coinone',
+    # 'bittrex',
     # 'bitfinex',
     # 'cexio',
     # 'exmo',
@@ -31,6 +32,7 @@ def display(currency, html):
     # print("Buy from", marketIn[0], "- Sell to", marketOut[0])
     buy = fetch(marketIn[0], currency)
     sell = fetch(marketOut[0], currency)
+    print(sell, buy)
     premium = (sell / buy - 1) * 100
     if html:
         info = "<small>buy: " + str('%.2f' % buy) + " - sell: " \
@@ -80,7 +82,9 @@ def fetch(market, currency):
         return coinone(currency)
     if market == 'korbit':
         return korbit(currency)
-    return 'Something wrong happened'
+    if market == 'bittrex':
+        return bittrex(currency)
+    return False
     # else:
     #     return float(cryptonator(currency, market))
 
