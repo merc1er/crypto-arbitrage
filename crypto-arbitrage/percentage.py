@@ -3,71 +3,17 @@
 import sys
 import time
 from src.fetcher import *
+from src.checks import verify_args
 
 
-marketIn = ['coinbase']
-marketOut = ['korbit']
-
-MARKETS = [
-    'korbit',
-    'coinbase',
-    'coinone',
-    # 'bittrex',
-    # 'bitfinex',
-    # 'cexio',
-    # 'exmo',
-    # 'kraken',
-    # 'livecoin',
-    # 'wexnz'
-]
-
-ACCEPTED_CURRENCIES = ['bch', 'btc', 'eth', 'ltc', 'etc']
-
-
-def display(currency, html):
-    print("Buy from", marketIn[0], "- Sell to", marketOut[0])
-    buy = fetch(marketIn[0], currency)
-    sell = fetch(marketOut[0], currency)
+def display(currency, market_in, market_out):
+    print("Buy from", market_in, "- Sell to", market_out)
+    buy = fetch(market_in, currency)
+    sell = fetch(market_out, currency)
     premium = (sell / buy - 1) * 100
-    if html:
-        info = "<small>buy: " + str('%.2f' % buy) + " - sell: " \
-            + str('%.2f' % sell) + "</small>"
-        print("<p class='text-center'>" + currency.upper() + ": " +
-              str('%.2f' % premium) + "% " + info + "</p>")
-    else:
-        info = "buy: EUR " + str('%.2f' % buy) + " - sell: EUR " +\
-            str('%.2f' % sell)
-        print(currency.upper() + ": " + str('%.2f' % premium) + "% " + info)
-
-
-def verifyArgs():
-    if len(sys.argv) < 2:
-        print('Usage:\npython percentage.py cryptocurrency [marketIn] '
-              '[marketOut] [options]')
-        sys.exit()
-    # checking length
-    if len(sys.argv) > 3:
-        marketIn[0] = sys.argv[2].lower()
-        marketOut[0] = sys.argv[3].lower()
-    # checking argument 1
-    currency = sys.argv[1].lower()
-    if currency not in ACCEPTED_CURRENCIES:
-        if currency in ['-h', 'help', '--help']:
-            print("Usage:\npython percentage.py [cryptocurrency]")
-            sys.exit()
-        if currency in ['market', 'markets', 'exchange', 'exchanges']:
-            print("Supported exchanges: " + ', '.join(MARKETS))
-            sys.exit()
-        print("Invalid argument")
-        print("Supported currencies are:", ACCEPTED_CURRENCIES)
-        sys.exit()
-    # and now the rest
-    if marketIn[0] not in MARKETS or marketOut[0] not in MARKETS:
-        print("Invalid market name")
-        print("Here is the list of supported MARKETS:")
-        print(MARKETS)
-        sys.exit()
-    return currency
+    info = "buy: EUR " + str('%.2f' % buy) + " - sell: EUR " +\
+        str('%.2f' % sell)
+    print(currency.upper() + ": " + str('%.2f' % premium) + "% " + info)
 
 
 def fetch(market, currency):
@@ -96,13 +42,8 @@ def loop(currency):
 
 
 def main():
-    currency = verifyArgs()
-    if len(sys.argv) > 2 and sys.argv[-1] in ['--html']:
-        display(currency, True)
-    elif len(sys.argv) > 2 and sys.argv[-1] in ['--loop']:
-        loop(currency)
-    else:
-        display(currency, False)
+    currency, market_in, market_out = verify_args(sys.argv)
+    return display(currency, market_in, market_out)
 
 
 if __name__ == '__main__':
