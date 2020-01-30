@@ -28,11 +28,11 @@ def krwCalc():
         errorHandler("Couldn't fetch from fixer.io")
 
 
-def korbit(currencyIn):
-    """ Returns the value of 1 currencyIn according to korbit """
+def korbit(currency_in):
+    """ Returns the value of 1 currency_in according to korbit """
     try:
         korbit_endpoint = 'https://api.korbit.co.kr/v1/ticker?currency_pair='
-        req = requests.get(korbit_endpoint + currencyIn.lower() + "_krw")
+        req = requests.get(korbit_endpoint + currency_in.lower() + "_krw")
         btc_korbit = req.json()
         price = float(btc_korbit['last']) / krwCalc()
         return price
@@ -40,11 +40,11 @@ def korbit(currencyIn):
         errorHandler('Could not fetch from korbit')
 
 
-def coinone(currencyIn):
-    """ Returns the value of 1 currencyIn according to coinone """
+def coinone(currency_in):
+    """ Returns the value of 1 currency_in according to coinone """
     try:
         req = requests.get(url="https://api.coinone.co.kr/ticker/",
-                           params={"currency": currencyIn})
+                           params={"currency": currency_in})
         btc_coinone = req.json()
         price = float(btc_coinone['last']) / krwCalc()
         return price
@@ -52,11 +52,11 @@ def coinone(currencyIn):
         errorHandler('Could not fetch from coinone')
 
 
-def gdax(currencyIn):
-    """ Returns the value of 1 currencyIn according to Coinbase Pro """
+def gdax(currency_in):
+    """ Returns the value of 1 currency_in according to Coinbase Pro """
     try:
         req = requests.get("https://api.pro.coinbase.com/products/" +
-                           currencyIn.upper() + "-EUR/ticker")
+                           currency_in.upper() + "-EUR/ticker")
         btc_gdax = req.json()
         price = float(btc_gdax['ask'])
         return price
@@ -64,20 +64,20 @@ def gdax(currencyIn):
         errorHandler('Could not fetch from Coinbase Pro')
 
 
-def bittrex(currencyIn):
-    """ Returns the value of 1 currencyIn according to bittrex """
+def bittrex(currency_in):
+    """ Returns the value of 1 currency_in according to bittrex """
     bittrex_endpoint = ('https://bittrex.com/api/v1.1/public'
                         '/getticker?market=')
-    req = requests.get(bittrex_endpoint + "usd-" + currencyIn.upper())
+    req = requests.get(bittrex_endpoint + "usd-" + currency_in.upper())
     price_json = req.json()
     price = float(price_json['result']['Last'])
     return price
 
 
-def cryptonator(currencyIn, market):
+def cryptonator(currency_in, market):
     try:
         req = requests.get("https://api.cryptonator.com/api/full/" +
-                           currencyIn.lower() + "-eur")
+                           currency_in.lower() + "-eur")
         callback = req.json()
         markets = callback['ticker']['markets']
         if market == 'bitfinex':
