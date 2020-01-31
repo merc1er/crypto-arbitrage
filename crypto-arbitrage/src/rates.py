@@ -1,11 +1,10 @@
 import requests
 
 
-def krw_rate():
-    """ Converts 1 EUR to KRW"""
+def eur_equivalent(currency):
+    """ Converts 1 EUR to `currency`"""
     endpoint = 'https://api.exchangeratesapi.io/latest'
     r = requests.get(endpoint)
     r.raise_for_status()
-    krw_string = r.json()['rates']['KRW']
-    krw = float(krw_string)
-    return krw
+    rate = float(r.json()['rates'][currency])
+    return rate

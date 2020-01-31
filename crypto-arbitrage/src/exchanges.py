@@ -5,7 +5,7 @@
 #
 
 import requests
-from .rates import krw_rate
+from .rates import eur_equivalent
 
 
 class Exchange:
@@ -24,8 +24,8 @@ class Exchange:
         r.raise_for_status()
         data = r.json()
         rate_base_currency = float(data[self.json_rate_arg])
-        if self.base_currency.upper() == 'KRW':
-            rate = rate_base_currency / krw_rate()
+        if self.base_currency.upper() != 'EUR':
+            rate = rate_base_currency / eur_equivalent(self.base_currency)
         else:
             rate = rate_base_currency
         return rate
