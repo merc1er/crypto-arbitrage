@@ -74,6 +74,13 @@ class Bitkub(Exchange):
         return rate
 
 
+class Kraken(Exchange):
+    base_endpoint = 'https://api.kraken.com/0/public/Ticker?pair='
+    post_url = 'eur'
+    base_currency = 'EUR'
+    json_rate_arg = ['result', 'o']
+
+
 def cryptonator(currency_in, market):
     req = requests.get("https://api.cryptonator.com/api/full/" +
                        currency_in.lower() + "-eur")

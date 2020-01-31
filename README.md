@@ -15,6 +15,7 @@ python percentage.py cryptocurrency [marketIn] [marketOut] [options]
 - Europe/NA:
 	- Coinbase Pro
     - Bittrex
+    - Kraken
 
 - Asia:
     - 🇰🇷 Korea:
