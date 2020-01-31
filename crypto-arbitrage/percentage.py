@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import sys
-import time
 from src.exchanges import *
 from src.checks import verify_args
 
@@ -38,17 +37,6 @@ def fetch(market, currency):
     raise TypeError
     # else:
     #     return float(cryptonator(currency, market))
-
-
-def loop(currency):
-    print("\r\nEntering loop mode. Press ctrl + c to exit")
-    while True:
-        try:
-            display(currency, False)
-            time.sleep(60)
-        except KeyboardInterrupt:
-            print("\r\nQuitting...")
-            sys.exit()
 
 
 def main():
