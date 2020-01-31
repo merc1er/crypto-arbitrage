@@ -39,7 +39,7 @@ class Exchange:
         r.raise_for_status()
         data = r.json()
         rate_base_currency = float(data[self.json_rate_arg])
-        if self.base_currency.upper() != 'USD':
+        if self.base_currency.upper() == 'KRW':
             rate = rate_base_currency / krw_rate()
         else:
             rate = rate_base_currency
@@ -60,14 +60,11 @@ class Coinone(Exchange):
     params = True
 
 
-def gdax(currency_in):
-    """ Returns the value of 1 currency_in according to Coinbase Pro """
-    req = requests.get("https://api.pro.coinbase.com/products/" +
-                       currency_in.upper() + "-EUR/ticker")
-    req.raise_for_status()
-    btc_gdax = req.json()
-    price = float(btc_gdax['ask'])
-    return price
+class CoinbasePro(Exchange):
+    base_endpoint = 'https://api.pro.coinbase.com/products/'
+    post_url = '-EUR/ticker'
+    base_currency = 'EUR'
+    json_rate_arg = 'ask'
 
 
 def bittrex(currency_in):

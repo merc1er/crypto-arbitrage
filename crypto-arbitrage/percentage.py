@@ -18,7 +18,8 @@ def display(currency, market_in, market_out):
 
 def fetch(market, currency):
     if market == 'coinbase':
-        return gdax(currency)
+        coinbase = CoinbasePro()
+        return coinbase.get_rate(currency)
     if market == 'coinone':
         coinone = Coinone()
         return coinone.get_rate(currency)
