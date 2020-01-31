@@ -27,7 +27,8 @@ def fetch(market, currency):
         korbit = Korbit()
         return korbit.get_rate(currency)
     if market == 'bittrex':
-        return bittrex(currency)
+        bittrex = Bittrex()
+        return bittrex.get_rate(currency)
     return False
     # else:
     #     return float(cryptonator(currency, market))

@@ -7,7 +7,7 @@ MARKETS = [
     'korbit',
     'coinbase',
     'coinone',
-    # 'bittrex',
+    'bittrex',
     # 'bitfinex',
     # 'cexio',
     # 'exmo',

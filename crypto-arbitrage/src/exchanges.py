@@ -23,7 +23,11 @@ class Exchange:
                              crypto.lower() + self.post_url)
         r.raise_for_status()
         data = r.json()
-        rate_base_currency = float(data[self.json_rate_arg])
+        if type(self.json_rate_arg) is list:
+            rate_base_currency = float(
+                data[self.json_rate_arg[0]][self.json_rate_arg[1]])
+        else:
+            rate_base_currency = float(data[self.json_rate_arg])
         if self.base_currency.upper() != 'EUR':
             rate = rate_base_currency / eur_equivalent(self.base_currency)
         else:
@@ -52,14 +56,10 @@ class CoinbasePro(Exchange):
     json_rate_arg = 'ask'
 
 
-def bittrex(currency_in):
-    """ Returns the value of 1 currency_in according to bittrex """
-    bittrex_endpoint = ('https://bittrex.com/api/v1.1/public'
-                        '/getticker?market=')
-    req = requests.get(bittrex_endpoint + "usd-" + currency_in.upper())
-    price_json = req.json()
-    price = float(price_json['result']['Last'])
-    return price
+class Bittrex(Exchange):
+    base_endpoint = 'https://bittrex.com/api/v1.1/public/getticker?market=usd-'
+    base_currency = 'USD'
+    json_rate_arg = ['result', 'Last']
 
 
 def cryptonator(currency_in, market):
