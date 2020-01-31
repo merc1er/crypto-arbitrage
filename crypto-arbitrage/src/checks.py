@@ -8,6 +8,7 @@ MARKETS = [
     'coinbase',
     'coinone',
     'bittrex',
+    'bitkub',
     # 'bitfinex',
     # 'cexio',
     # 'exmo',

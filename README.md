@@ -17,8 +17,11 @@ python percentage.py cryptocurrency [marketIn] [marketOut] [options]
     - Bittrex
 
 - Asia:
-	- coinone
-	- korbit
+    - 🇰🇷 Korea:
+    	- coinone
+    	- korbit
+    - 🇹🇭 Thailand:
+        - Bitkub
 
 #### Cryptocurrencies:
 

@@ -62,6 +62,18 @@ class Bittrex(Exchange):
     json_rate_arg = ['result', 'Last']
 
 
+class Bitkub(Exchange):
+    base_endpoint = 'https://api.bitkub.com/api/market/ticker'
+    base_currency = 'THB'
+
+    def get_rate(self, crypto):
+        r = requests.get(self.base_endpoint)
+        r.raise_for_status()
+        rate_base_currency = r.json()['THB_' + crypto.upper()]['last']
+        rate = rate_base_currency / eur_equivalent(self.base_currency)
+        return rate
+
+
 def cryptonator(currency_in, market):
     req = requests.get("https://api.cryptonator.com/api/full/" +
                        currency_in.lower() + "-eur")
@@ -81,8 +93,3 @@ def cryptonator(currency_in, market):
     if market == 'wexnz':
         return markets[5]['price']
     return False
-
-###############################################################################
-#
-# ADD MARKETS APIs HERE
-#

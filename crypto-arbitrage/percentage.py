@@ -18,17 +18,20 @@ def display(currency, market_in, market_out):
 
 def fetch(market, currency):
     if market == 'coinbase':
-        coinbase = CoinbasePro()
-        return coinbase.get_rate(currency)
+        exchange = CoinbasePro()
+        return exchange.get_rate(currency)
     if market == 'coinone':
-        coinone = Coinone()
-        return coinone.get_rate(currency)
+        exchange = Coinone()
+        return exchange.get_rate(currency)
     if market == 'korbit':
-        korbit = Korbit()
-        return korbit.get_rate(currency)
+        exchange = Korbit()
+        return exchange.get_rate(currency)
     if market == 'bittrex':
-        bittrex = Bittrex()
-        return bittrex.get_rate(currency)
+        exchange = Bittrex()
+        return exchange.get_rate(currency)
+    if market == 'bitkub':
+        exchange = Bitkub()
+        return exchange.get_rate(currency)
     return False
     # else:
     #     return float(cryptonator(currency, market))
