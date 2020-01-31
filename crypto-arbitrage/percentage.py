@@ -20,7 +20,8 @@ def fetch(market, currency):
     if market == 'coinbase':
         return gdax(currency)
     if market == 'coinone':
-        return coinone(currency)
+        coinone = Coinone()
+        return coinone.get_rate(currency)
     if market == 'korbit':
         korbit = Korbit()
         return korbit.get_rate(currency)
