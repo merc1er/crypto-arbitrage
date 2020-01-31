@@ -2,7 +2,7 @@
 
 import sys
 import time
-from src.fetcher import *
+from src.exchanges import *
 from src.checks import verify_args
 
 
@@ -22,7 +22,8 @@ def fetch(market, currency):
     if market == 'coinone':
         return coinone(currency)
     if market == 'korbit':
-        return korbit(currency)
+        korbit = Korbit()
+        return korbit.get_rate(currency)
     if market == 'bittrex':
         return bittrex(currency)
     return False

@@ -23,14 +23,38 @@ def krw_rate():
     return krw
 
 
-def korbit(currency_in):
-    """ Returns the value of 1 currency_in according to korbit """
-    korbit_endpoint = 'https://api.korbit.co.kr/v1/ticker?currency_pair='
-    req = requests.get(korbit_endpoint + currency_in.lower() + "_krw")
-    req.raise_for_status()
-    btc_korbit = req.json()
-    price = float(btc_korbit['last']) / krw_rate()
-    return price
+class Exchange:
+    base_endpoint = ''
+    post_url = ''
+    base_currency = ''
+    json_rate_arg = ''  # e.g. 'ask' or 'last'
+
+    def get_rate(self, crypto):
+        r = requests.get(self.base_endpoint + crypto.lower() + self.post_url)
+        r.raise_for_status()
+        data = r.json()
+        rate_base_currency = float(data[self.json_rate_arg])
+        if self.base_currency.upper() != 'USD':
+            rate = rate_base_currency / krw_rate()
+        else:
+            rate = rate_base_currency
+        return rate
+
+
+class Korbit(Exchange):
+    base_endpoint = 'https://api.korbit.co.kr/v1/ticker?currency_pair='
+    post_url = '_krw'
+    base_currency = 'KRW'
+    json_rate_arg = 'last'
+
+# def korbit(currency_in):
+#     """ Returns the value of 1 currency_in according to korbit """
+#     korbit_endpoint = 'https://api.korbit.co.kr/v1/ticker?currency_pair='
+#     req = requests.get(korbit_endpoint + currency_in.lower() + "_krw")
+#     req.raise_for_status()
+#     btc_korbit = req.json()
+#     price = float(btc_korbit['last']) / krw_rate()
+#     return price
 
 
 def coinone(currency_in):
