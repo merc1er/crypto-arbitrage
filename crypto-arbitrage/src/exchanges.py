@@ -78,7 +78,21 @@ class Kraken(Exchange):
     base_endpoint = 'https://api.kraken.com/0/public/Ticker?pair='
     post_url = 'eur'
     base_currency = 'EUR'
-    json_rate_arg = ['result', 'o']
+
+    def get_rate(self, crypto):
+        r = requests.get(self.base_endpoint + crypto + self.post_url)
+        r.raise_for_status()
+
+        # handle weird kraken tickers
+        # if someone understands Kraken's logic let me know
+        if crypto.upper() == 'BCH':
+            kraken_crypto_code = 'BCHEUR'
+        else:
+            kraken_crypto_code = 'X' + crypto.upper().replace('BTC', 'XBT')
+            kraken_crypto_code += 'Z' + self.base_currency
+
+        rate = r.json()['result'][kraken_crypto_code]['o']
+        return float(rate)
 
 
 def cryptonator(currency_in, market):

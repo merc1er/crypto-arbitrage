@@ -32,7 +32,7 @@ def fetch(market, currency):
         exchange = Bitkub()
         return exchange.get_rate(currency)
     if market == 'kraken':
-        exchange = Bitkub()
+        exchange = Kraken()
         return exchange.get_rate(currency)
     raise TypeError
     # else:
