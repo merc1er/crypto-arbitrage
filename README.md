@@ -27,9 +27,9 @@ python crypto-arbitrage/percentage.py eth bittrex korbit
 #### Markets:
 
 - Europe/NA:
-	- Coinbase
+	- Coinbase [*(processing time*)](https://help.coinbase.com/en/coinbase/trading-and-funding/sending-or-receiving-cryptocurrency/why-is-my-transaction-pending.html)
     - Bittrex
-    - Kraken
+    - Kraken [*(processing time*)](https://support.kraken.com/hc/en-us/articles/203325283-Cryptocurrency-deposit-processing-times)
 
 - Asia:
     - 🇰🇷 Korea:
