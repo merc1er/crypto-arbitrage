@@ -74,6 +74,13 @@ class Bitkub(Exchange):
         return rate
 
 
+class Bithumb(Exchange):
+    base_endpoint = 'https://api.bithumb.com/public/ticker/'
+    post_url = '_krw'
+    base_currency = 'KRW'
+    json_rate_arg = ['data', 'opening_price']
+
+
 class Kraken(Exchange):
     base_endpoint = 'https://api.kraken.com/0/public/Ticker?pair='
     post_url = 'eur'

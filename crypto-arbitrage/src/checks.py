@@ -10,6 +10,7 @@ MARKETS = [
     'bittrex',
     'bitkub',
     'kraken',
+    'bithumb',
     # 'bitfinex',
     # 'cexio',
     # 'exmo',

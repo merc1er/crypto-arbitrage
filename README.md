@@ -33,8 +33,9 @@ python crypto-arbitrage/percentage.py eth bittrex korbit
 
 - Asia:
     - 🇰🇷 Korea:
-    	- coinone
-    	- korbit
+        - Bithumb
+    	- Coinone
+    	- Korbit
     - 🇹🇭 Thailand:
         - Bitkub
 
